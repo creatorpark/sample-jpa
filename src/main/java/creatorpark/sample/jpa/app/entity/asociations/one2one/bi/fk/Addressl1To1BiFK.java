@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
@@ -25,10 +27,10 @@ public class Addressl1To1BiFK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@MapsId
-	@OneToOne( fetch = FetchType.LAZY)
+	@OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
 	private User1To1BiFK user;
 	  
 	private String zipCode;

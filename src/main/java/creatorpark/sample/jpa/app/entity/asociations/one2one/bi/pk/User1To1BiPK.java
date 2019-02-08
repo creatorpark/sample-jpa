@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +29,6 @@ public class User1To1BiPK implements Serializable {
 	private String name;
 	private String password;
 
-	@OneToOne( cascade= CascadeType.ALL, mappedBy="user" ) // user는 non-own entity에서 만든 own entity의 객체명
+	@OneToOne(cascade= CascadeType.ALL)
 	private Address1To1BiPK address;
 }

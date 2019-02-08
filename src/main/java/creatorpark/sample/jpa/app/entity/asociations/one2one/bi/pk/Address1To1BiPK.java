@@ -28,7 +28,8 @@ public class Address1To1BiPK implements Serializable {
 	private Long id;
 	
 	@MapsId
-	@OneToOne( fetch = FetchType.LAZY)
+	@JoinColumn(name="ID")
+	@OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
 	private User1To1BiPK user;
 	  
 	private String zipCode;

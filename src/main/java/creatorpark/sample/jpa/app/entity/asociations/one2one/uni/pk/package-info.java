@@ -7,6 +7,7 @@ package creatorpark.sample.jpa.app.entity.asociations.one2one.uni.pk;
  * 
  * One2One UniDirection PK 설정 
  * - Source Entity에 다음을 추가한다.
+ * 
  * @OneToOne(cascade= CascadeType.ALL)
  * @PrimaryKeyJoinColumn
  */
