@@ -30,5 +30,5 @@ public class User1to1FkBi implements Serializable {
 	private String password;
 
 	@OneToOne(cascade= CascadeType.ALL)
-	private Addressl1to1FkBi address;
+	private Address1to1FkBi address;
 }
