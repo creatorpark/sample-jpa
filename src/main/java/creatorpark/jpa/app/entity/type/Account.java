@@ -29,6 +29,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper=false)
 public class Account implements Serializable {
 	
+	
 	// https://stackoverflow.com/questions/2020904/when-and-why-jpa-entities-should-implement-serializable-interface
 	private static final long serialVersionUID = 1L;
 
