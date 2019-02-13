@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper=false)
 @Entity // Source Entity
-public class User1to1FkUni implements Serializable {
+public class UserFkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -31,5 +31,5 @@ public class User1to1FkUni implements Serializable {
 	
 	@OneToOne( cascade= CascadeType.ALL)
 	//@JoinColumn( name = "ADDRESS_ID") 생략가능, 위치는 Own
-	private Address1to1FkUni address;
+	private AddressFkUni address;
 }

@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper=false)
 @Entity // Target Entity (non-own)
-public class Address1to1PkUni implements Serializable {
+public class AddressPkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
