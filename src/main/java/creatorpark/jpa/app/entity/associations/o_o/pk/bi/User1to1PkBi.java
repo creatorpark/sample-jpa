@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper=false)
 @Entity // Source Entity (own)
-public class User1To1BiPK implements Serializable {
+public class User1to1PkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -30,5 +30,5 @@ public class User1To1BiPK implements Serializable {
 	private String password;
 
 	@OneToOne(cascade= CascadeType.ALL)
-	private Address1To1BiPK address;
+	private Address1to1PkBi address;
 }

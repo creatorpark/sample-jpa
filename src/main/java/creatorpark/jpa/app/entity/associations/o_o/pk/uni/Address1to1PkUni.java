@@ -1,36 +1,37 @@
 package creatorpark.jpa.app.entity.associations.o_o.pk.uni;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
+import creatorpark.jpa.vo.YesNo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity (Own : FK를 소유하는)
-public class User1To1UniPK implements Serializable {
+@Entity // Target Entity (non-own)
+public class Address1to1PkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	private String name;
-	private String password;
+	@Id
+	private Long id;
 	
-	@OneToOne(cascade= CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Address1To1UniPK address;
+	private String zipCode;
+	private String state;
+	private String city;
+	private String addressLine1;
+	private String addressLine2;
+	
 }
