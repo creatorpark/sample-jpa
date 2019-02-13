@@ -30,6 +30,6 @@ public class UserFkUni implements Serializable {
 	private String password;
 	
 	@OneToOne( cascade= CascadeType.ALL)
-	//@JoinColumn( name = "ADDRESS_ID") 생략가능, 위치는 Own
+	@JoinColumn(name = "ADDRESS_ID") // 생략가능
 	private AddressFkUni address;
 }

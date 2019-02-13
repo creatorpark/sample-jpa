@@ -7,6 +7,11 @@ package creatorpark.jpa.app.entity.associations.o_o.pk.bi;
  * Source Entity PK와 Target Entity의 PK가 같은 경우 (Shared Primary Key)
  *  
  * Source Entity 설정
+ * @OneToOne(cascade= CascadeType.ALL)
  *  
  * Target Entity 설정
+ * @MapsId
+ * @JoinColumn(name="ID")
+ * @OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
+ * 
  */
