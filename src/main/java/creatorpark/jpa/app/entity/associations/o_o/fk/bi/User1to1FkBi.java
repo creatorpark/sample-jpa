@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity (Own)
+@Entity // Source Entity
 public class User1to1FkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

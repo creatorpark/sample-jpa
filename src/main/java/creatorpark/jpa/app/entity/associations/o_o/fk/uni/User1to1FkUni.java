@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity (Own : FK를 소유하는)
+@Entity // Source Entity
 public class User1to1FkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
