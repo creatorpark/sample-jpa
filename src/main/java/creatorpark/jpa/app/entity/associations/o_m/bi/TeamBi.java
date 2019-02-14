@@ -30,7 +30,6 @@ public class TeamBi implements Serializable {
 	
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name="team")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="team", orphanRemoval = true)
 	private Set<PlayerBi> players = new HashSet<>();
 }

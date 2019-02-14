@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
@@ -30,6 +31,11 @@ public class PlayerBi implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String name;
+	private String uniformNumber;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="team_id")
 	private TeamBi team;
 	  
 }

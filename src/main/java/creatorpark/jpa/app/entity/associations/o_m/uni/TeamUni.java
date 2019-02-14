@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity
+@Entity 
 public class TeamUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -31,6 +31,5 @@ public class TeamUni implements Serializable {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name="team")
 	private Set<PlayerUni> players = new HashSet<>();
 }
