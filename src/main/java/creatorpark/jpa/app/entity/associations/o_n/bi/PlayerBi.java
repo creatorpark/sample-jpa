@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_m.bi;
+package creatorpark.jpa.app.entity.associations.o_n.bi;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

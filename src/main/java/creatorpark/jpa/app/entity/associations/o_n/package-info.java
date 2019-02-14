@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_m;
+package creatorpark.jpa.app.entity.associations.o_n;
 
 /* 
  * @OneToMany 관계에서

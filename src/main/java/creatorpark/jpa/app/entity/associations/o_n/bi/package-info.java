@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_m.bi;
+package creatorpark.jpa.app.entity.associations.o_n.bi;
 
 /*  
  *  Source Entity 설정

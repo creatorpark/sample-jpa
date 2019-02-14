@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_m.uni;
+package creatorpark.jpa.app.entity.associations.o_n.uni;
 
 /*  
  *  단방향 @OneToMany는 성능 이슈 때문에 양방향 @OneToMany만 사용하는게 좋다.
