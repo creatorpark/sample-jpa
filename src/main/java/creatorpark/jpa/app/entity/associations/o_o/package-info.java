@@ -11,4 +11,6 @@ package creatorpark.jpa.app.entity.associations.o_o;
  * - mappedBy 속성을 적는다.
  * - FK를 변경하지 못하고 읽기만 가능하다.
  * 
+ * https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
+ * 
  */

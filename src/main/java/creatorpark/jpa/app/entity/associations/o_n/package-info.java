@@ -13,4 +13,6 @@ package creatorpark.jpa.app.entity.associations.o_n;
  * - FK를 변경하지 못하고 읽기만 가능하다.
  * - 항상 One쪽이 Target Entity이다.
  * 
+ * 단방향 1:N관계는 성능 이슈 때문에 주로 Bi Direction만 사용된다.
+ * https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
  */
