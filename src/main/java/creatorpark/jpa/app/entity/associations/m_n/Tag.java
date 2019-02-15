@@ -1,25 +1,24 @@
-package creatorpark.jpa.app.entity.associations.m_n.bi;
+package creatorpark.jpa.app.entity.associations.m_n;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity
-public class UserBi implements Serializable {
+@Entity 
+public class Tag implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,8 +26,7 @@ public class UserBi implements Serializable {
 	private Long id;
 	
 	private String name;
-	private String password;
-
-	@OneToOne(cascade= CascadeType.ALL)
-	private RoleBi address;
+	
+	@ManyToMany(mappedBy="tags")
+	private Set<Post> posts = new HashSet<>();
 }
