@@ -38,6 +38,7 @@ public class UserFkBi implements Serializable {
 	
 	public static UserFkBi createUser(String name, AddressFkBi address) {
 		UserFkBi user = new UserFkBi();
+		user.setPassword("HELLO");
 		user.setName(name);
 		user.setAddress( address );
 		return user;

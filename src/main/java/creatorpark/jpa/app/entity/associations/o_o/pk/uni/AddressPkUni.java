@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import creatorpark.jpa.app.entity.associations.o_o.fk.bi.AddressFkBi;
 import creatorpark.jpa.vo.YesNo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Target Entity
+@Entity(name="address_pk") // Target Entity
 public class AddressPkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,4 +32,10 @@ public class AddressPkUni implements Serializable {
 	private String state;
 	private String city;
 	
+	public static AddressPkUni createAddress(String state, String city) {
+		AddressPkUni address = new AddressPkUni();
+		address.setState( state );
+		address.setCity( city );
+		return address;
+	}
 }

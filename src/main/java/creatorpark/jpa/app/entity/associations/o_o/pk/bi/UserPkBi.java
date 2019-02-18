@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity
+@Entity(name="user_pk") // Source Entity
 public class UserPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -29,6 +30,20 @@ public class UserPkBi implements Serializable {
 	private String name;
 	private String password;
 
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private AddressPkBi address;
+	
+	public static UserPkBi createUser(String name, AddressPkBi address ) {
+		UserPkBi user = new UserPkBi();
+		user.setPassword("HELLO");
+		user.setName(name);
+		user.setAddress( address );
+		return user;
+	}
+	
+	// 양방향은 주인된쪽에서 
+	public void setAddress(AddressPkBi address) {
+		this.address = address;
+		address.setUser( this );
+	}
 }

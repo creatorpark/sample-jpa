@@ -22,7 +22,7 @@ public class OneToOneFkBiTest {
 	@Test
 	@Transactional
 	public void persist() { // 신규 생성
-		UserFkBi user = UserFkBi.createUser("JH", AddressFkBi.createAddress("SUDEMUN", "SEOUL"));
+		UserFkBi user = UserFkBi.createUser("JH", AddressFkBi.createAddress("SEODAEMUN", "SEOUL"));
 		log.info("BEFORE PERSIST");
 		em.persist(user);
 		log.info("AFTER PERSIST");

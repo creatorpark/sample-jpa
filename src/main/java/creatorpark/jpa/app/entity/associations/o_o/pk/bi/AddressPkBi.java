@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
 import creatorpark.jpa.vo.YesNo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Target Entity
+@Entity(name="address_pk") // Target Entity
 public class AddressPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,11 +29,18 @@ public class AddressPkBi implements Serializable {
 	private Long id;
 	
 	@MapsId
-	@JoinColumn(name="ID")
-	@OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
+	// Join 칼럼 위치에 따른 SELECT 영향도 조사
+	@JoinColumn(name="id")
+	@OneToOne(fetch = FetchType.LAZY)
 	private UserPkBi user;
 	  
 	private String state;
 	private String city;
 	
+	public static AddressPkBi createAddress(String state, String city ) {
+		AddressPkBi address = new AddressPkBi();
+		address.setState( state );
+		address.setCity( city );
+		return address;
+	}
 }

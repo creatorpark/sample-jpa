@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import creatorpark.jpa.app.entity.associations.o_o.fk.bi.AddressFkBi;
+import creatorpark.jpa.app.entity.associations.o_o.fk.bi.UserFkBi;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity
+@Entity(name="user_pk") // Source Entity
 public class UserPkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,4 +35,11 @@ public class UserPkUni implements Serializable {
 	@OneToOne(cascade= CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private AddressPkUni address;
+	
+	public static UserPkUni createUser(String name ) {
+		UserPkUni user = new UserPkUni();
+		user.setPassword("HELLO");
+		user.setName(name);
+		return user;
+	}
 }
