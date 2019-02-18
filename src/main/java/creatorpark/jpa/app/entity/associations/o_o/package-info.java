@@ -13,4 +13,7 @@ package creatorpark.jpa.app.entity.associations.o_o;
  * 
  * https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
  * 
+ * 1:1 관계에서 동일 PK를 사용하는 것은 SELECT에서 INDEX를 한쪽만 타도 되기 때문에 50%의 성능향상이 있다.
+ * 
+ * 
  */

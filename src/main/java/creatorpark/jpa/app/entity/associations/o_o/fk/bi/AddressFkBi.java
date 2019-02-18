@@ -33,9 +33,13 @@ public class AddressFkBi implements Serializable {
 	@OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
 	private UserFkBi user;
 	  
-	private String zipCode;
 	private String state;
 	private String city;
-	private String addressLine1;
-	private String addressLine2;
+	
+	public static AddressFkBi createAddress(String state, String city) {
+		AddressFkBi address = new AddressFkBi();
+		address.state = state;
+		address.city = city;
+		return address;
+	}
 }

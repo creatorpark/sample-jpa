@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,4 +30,16 @@ public class UserFkBi implements Serializable {
 
 	@OneToOne(cascade= CascadeType.ALL)
 	private AddressFkBi address;
+	
+	public void setAddress(AddressFkBi address) {
+		address.setUser( this );
+		this.address = address;
+	}
+	
+	public static UserFkBi createUser(String name, AddressFkBi address) {
+		UserFkBi user = new UserFkBi();
+		user.setName(name);
+		user.setAddress( address );
+		return user;
+	}
 }

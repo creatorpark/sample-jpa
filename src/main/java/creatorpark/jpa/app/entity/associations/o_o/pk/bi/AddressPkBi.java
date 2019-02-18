@@ -32,10 +32,7 @@ public class AddressPkBi implements Serializable {
 	@OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
 	private UserPkBi user;
 	  
-	private String zipCode;
 	private String state;
 	private String city;
-	private String addressLine1;
-	private String addressLine2;
 	
 }

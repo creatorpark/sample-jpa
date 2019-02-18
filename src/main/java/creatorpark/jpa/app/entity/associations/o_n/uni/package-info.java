@@ -10,6 +10,5 @@ package creatorpark.jpa.app.entity.associations.o_n.uni;
  *  @OneToMany(cascade=CascadeType.ALL) 
  *  
  *  
- *  
  *  http://ojc.asia/bbs/board.php?bo_table=LecJpa&wr_id=205
  */

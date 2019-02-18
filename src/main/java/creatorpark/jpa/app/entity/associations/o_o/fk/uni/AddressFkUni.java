@@ -29,10 +29,7 @@ public class AddressFkUni implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String zipCode;
 	private String state;
 	private String city;
-	private String addressLine1;
-	private String addressLine2;
 	
 }

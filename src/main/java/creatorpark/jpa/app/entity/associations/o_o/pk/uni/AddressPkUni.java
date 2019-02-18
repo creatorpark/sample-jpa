@@ -28,10 +28,7 @@ public class AddressPkUni implements Serializable {
 	@Id
 	private Long id;
 	
-	private String zipCode;
 	private String state;
 	private String city;
-	private String addressLine1;
-	private String addressLine2;
 	
 }
