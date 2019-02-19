@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity 
+@Entity(name="team")
 public class TeamUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

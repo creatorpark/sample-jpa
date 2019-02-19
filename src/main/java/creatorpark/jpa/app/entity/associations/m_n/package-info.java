@@ -23,5 +23,6 @@ package creatorpark.jpa.app.entity.associations.m_n;
  * 	@ManyToMany(mappedBy="tags")
  *	private Set<Post> posts = new HashSet<>();
  * 
+ * M:N Article
  * https://vladmihalcea.com/the-best-way-to-use-the-manytomany-annotation-with-jpa-and-hibernate/
  */
