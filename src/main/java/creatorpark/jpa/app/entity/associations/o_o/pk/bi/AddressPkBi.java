@@ -21,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity(name="address_pk") // Target Entity
+@Entity(name="address_pk") // Source Entity
 public class AddressPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class AddressPkBi implements Serializable {
 	private Long id;
 	
 	@MapsId
-	// Join 칼럼 위치에 따른 SELECT 영향도 조사
+	// TODO Join 칼럼, 옵셔널 조건에 따른 SELECT시 JOIN, LEFT JOIN 되는거 조사
 	@JoinColumn(name="id")
 	@OneToOne(fetch = FetchType.LAZY)
 	private UserPkBi user;

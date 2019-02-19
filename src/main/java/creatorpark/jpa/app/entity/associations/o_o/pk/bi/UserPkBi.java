@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity(name="user_pk") // Source Entity
+@Entity(name="user_pk") // Target Entity
 public class UserPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

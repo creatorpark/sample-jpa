@@ -13,6 +13,10 @@ import lombok.extern.java.Log;
 @Log
 //@Component
 public class OneToOnePkUniRunner implements ApplicationRunner {
+	/* 
+	 * 단방향에서 Source Entity는 Target Entity의 존재를 모른다. 
+	 * Target -> Source로만 접근
+	 */
 	
 	@PersistenceContext
 	EntityManager em;

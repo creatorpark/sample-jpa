@@ -16,6 +16,13 @@ import lombok.extern.java.Log;
 @Log
 public class OneToOnePkBiRunner implements ApplicationRunner {
 	
+	/*  
+	 * 양방향은 Source Entity에서도 Target Entity의 참조를 갖게 된다.
+	 * Source Entity <-> Target Entity 서로 참조되도록<양방향> 한다는 뜻.
+	 *  
+	 * Source Entity PK와 Target Entity의 PK가 같은 경우 (Shared Primary Key)
+	 */
+	
 	@PersistenceContext
 	EntityManager em;
 
