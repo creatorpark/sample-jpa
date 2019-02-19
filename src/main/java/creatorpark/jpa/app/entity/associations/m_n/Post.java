@@ -35,5 +35,15 @@ public class Post implements Serializable {
 		joinColumns = @JoinColumn(name = "post_id"), 
 		inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private Set<Tag> tags = new HashSet<>();
+	
+	public void addTag(Tag tag) {
+		tag.getPosts().add( this );
+		tags.add(tag);
+	}
+	
+	public void removeTag(Tag tag) {
+		tag.getPosts().remove( this );
+		tags.remove( tag );
+	}
 
 }

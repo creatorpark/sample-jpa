@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity 
+@Entity // Target Entity
 public class Tag implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

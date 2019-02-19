@@ -14,5 +14,4 @@ CREATE TABLE player (
   , PRIMARY KEY (id)
   , CONSTRAINT player_fk FOREIGN KEY (team_id)
     REFERENCES team (id) 
-    ON DELETE CASCADE ON UPDATE NO ACTION
 ) COMMENT = '선수';
