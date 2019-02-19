@@ -34,7 +34,7 @@ public class UserPkUni implements Serializable {
 	
 	public static UserPkUni createUser(String name ) {
 		UserPkUni user = new UserPkUni();
-		user.setPassword("HELLO");
+		user.setPassword("PK_HELLO");
 		user.setName(name);
 		return user;
 	}

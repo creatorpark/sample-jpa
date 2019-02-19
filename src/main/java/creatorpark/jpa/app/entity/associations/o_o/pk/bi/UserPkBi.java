@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity(name="user_pk") // Target Entity
+@Entity(name="user_pk") // Target Entity, Parent
 public class UserPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -32,6 +32,11 @@ public class UserPkBi implements Serializable {
 
 	@OneToOne(mappedBy="user", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private AddressPkBi address;
+
+	public void setAddress(AddressPkBi address) {
+		this.address = address;
+		this.address.setUser( this );
+	}
 	
 	public static UserPkBi createUser(String name, AddressPkBi address ) {
 		UserPkBi user = new UserPkBi();
@@ -40,10 +45,5 @@ public class UserPkBi implements Serializable {
 		user.setAddress( address );
 		return user;
 	}
-	
-	// 양방향은 주인된쪽에서 
-	public void setAddress(AddressPkBi address) {
-		this.address = address;
-		address.setUser( this );
-	}
+
 }

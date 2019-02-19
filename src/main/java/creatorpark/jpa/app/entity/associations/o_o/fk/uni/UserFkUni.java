@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import creatorpark.jpa.app.entity.associations.o_o.pk.uni.UserPkUni;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Target Entity
+@Entity(name="user_fk") // Target Entity
 public class UserFkUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -29,7 +30,10 @@ public class UserFkUni implements Serializable {
 	private String name;
 	private String password;
 	
-	@OneToOne( cascade= CascadeType.ALL)
-	@JoinColumn(name = "ADDRESS_ID") // 생략가능
-	private AddressFkUni address;
+	public static UserFkUni createUser(String name ) {
+		UserFkUni user = new UserFkUni();
+		user.setPassword("FK_HELLO");
+		user.setName(name);
+		return user;
+	}
 }

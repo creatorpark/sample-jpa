@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Target Entity
+@Entity(name="address_fk")  // Source Entity, Child
 public class AddressFkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class AddressFkBi implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(mappedBy="address") //own에서 만든 target entity의 객체명
+	@OneToOne(fetch = FetchType.LAZY)
 	private UserFkBi user;
 	  
 	private String state;

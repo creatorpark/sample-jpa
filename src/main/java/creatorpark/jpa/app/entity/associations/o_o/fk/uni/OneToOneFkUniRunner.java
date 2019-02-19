@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_o.pk.uni;
+package creatorpark.jpa.app.entity.associations.o_o.fk.uni;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,7 +12,7 @@ import lombok.extern.java.Log;
 
 @Log
 //@Component
-public class OneToOnePkUniRunner implements ApplicationRunner {
+public class OneToOneFkUniRunner implements ApplicationRunner {
 
 	@PersistenceContext
 	EntityManager em;
@@ -31,12 +31,12 @@ public class OneToOnePkUniRunner implements ApplicationRunner {
 	 * 고로 @OneToOne 단방향은 추천하지 않는다.
 	 */
 	private void persist() {
-		log.info("PERSIST 1 - user_pk");
-		UserPkUni user = UserPkUni.createUser("JH");
+		log.info("PERSIST 1 - user_fk");
+		UserFkUni user = UserFkUni.createUser("JH");
 		em.persist(user);
 		
-		log.info("PERSIST 2 - address_pk");
-		AddressPkUni address = AddressPkUni.createAddress(user, "SEODAEMUN", "SEOUL");
+		log.info("PERSIST 2 - address_fk");
+		AddressFkUni address = AddressFkUni.createAddress(user, "MAPOGU", "SEOUL");
 		em.persist( address );
 		
 		em.flush();

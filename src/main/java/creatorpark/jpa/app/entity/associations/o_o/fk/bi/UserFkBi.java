@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity // Source Entity
+@Entity(name="user_fk") // Target Entity, Parent
 public class UserFkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,12 +29,12 @@ public class UserFkBi implements Serializable {
 	private String name;
 	private String password;
 
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private AddressFkBi address;
 	
 	public void setAddress(AddressFkBi address) {
-		address.setUser( this );
 		this.address = address;
+		this.address.setUser( this );
 	}
 	
 	public static UserFkBi createUser(String name, AddressFkBi address) {
@@ -43,4 +44,6 @@ public class UserFkBi implements Serializable {
 		user.setAddress( address );
 		return user;
 	}
+	
+	
 }
