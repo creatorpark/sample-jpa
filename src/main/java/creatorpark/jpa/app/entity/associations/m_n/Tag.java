@@ -16,7 +16,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=false, exclude= {"posts"})
 @Entity // Target Entity
 public class Tag implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -29,4 +29,10 @@ public class Tag implements Serializable {
 	
 	@ManyToMany(mappedBy="tags")
 	private Set<Post> posts = new HashSet<>();
+	
+	public static Tag createTag(String name) {
+		Tag tag = new Tag();
+		tag.setName(name);
+		return tag;
+	}
 }

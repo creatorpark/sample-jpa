@@ -12,8 +12,9 @@ import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
 import creatorpark.jpa.app.entity.associations.o_o.pk.uni.UserPkUni;
 import lombok.extern.java.Log;
 
-//@Component
+
 @Log
+@Component
 public class ManyToManyRunner implements ApplicationRunner {
 	
 	@PersistenceContext
@@ -31,6 +32,12 @@ public class ManyToManyRunner implements ApplicationRunner {
 	private void persist() {
 		log.info("PERSIST - M:N post");
 		
+		Post post = Post.createPost("HAHAHA");
+		post.addTag(Tag.createTag("N!"));
+		post.addTag(Tag.createTag("N2!"));
+		post.addTag(Tag.createTag("N3!"));
+		
+		em.persist(post);
 	}
 
 }

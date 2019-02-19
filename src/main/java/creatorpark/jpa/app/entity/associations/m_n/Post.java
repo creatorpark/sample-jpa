@@ -13,13 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=false, exclude= {"tags"})
 @Entity // Source Entity
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +45,12 @@ public class Post implements Serializable {
 	public void removeTag(Tag tag) {
 		tag.getPosts().remove( this );
 		tags.remove( tag );
+	}
+	
+	public static Post createPost(String title) {
+		Post post = new Post();
+		post.setTitle(title);
+		return post;
 	}
 
 }
