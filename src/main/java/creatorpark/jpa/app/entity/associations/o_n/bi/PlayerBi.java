@@ -2,6 +2,7 @@ package creatorpark.jpa.app.entity.associations.o_n.bi;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,7 +23,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=false, exclude= {"team"})
 @Entity(name="player")
 public class PlayerBi implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -34,8 +35,15 @@ public class PlayerBi implements Serializable {
 	private String name;
 	private String uniformNumber;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="team_id")
-	private TeamBi team;
+	@ManyToOne(fetch=FetchType.LAZY)
+	private TeamBi team = new TeamBi();;
+	
+	public static PlayerBi createPlayer(String name, String uniformNumber) {
+		PlayerBi player = new PlayerBi();
+		player.setName( name );
+		player.setUniformNumber( uniformNumber );
+		return player;
+	}
 	  
 }

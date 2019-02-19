@@ -12,8 +12,8 @@ import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
 import creatorpark.jpa.app.entity.associations.o_o.pk.uni.UserPkUni;
 import lombok.extern.java.Log;
 
-//@Component
 @Log
+//@Component
 public class OneToManyUniRunner implements ApplicationRunner {
 	
 	@PersistenceContext
@@ -30,6 +30,10 @@ public class OneToManyUniRunner implements ApplicationRunner {
 
 	private void persist() {
 		log.info("PERSIST - 1:N team_uni");
+		TeamUni team = TeamUni.createTeam("NOLLS");
+		team.getPlayers().add( PlayerUni.createPlayer("N1", "1"));
+		team.getPlayers().add( PlayerUni.createPlayer("N2", "2"));
+		em.persist( team );
 	}
 
 }

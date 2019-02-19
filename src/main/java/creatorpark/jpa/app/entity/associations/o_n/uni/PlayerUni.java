@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Entity(name="player")
+@Entity
 public class PlayerUni implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -30,4 +30,13 @@ public class PlayerUni implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String name;
+	private String uniformNumber;
+	
+	public static PlayerUni createPlayer( String name, String uniformNumber) {
+		PlayerUni player = new PlayerUni();
+		player.setName(name);
+		player.setUniformNumber(uniformNumber);
+		return player;
+	}
 }

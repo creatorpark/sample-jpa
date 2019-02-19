@@ -22,7 +22,6 @@ public class OneToOnePkUniRunner implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		persist();
 		//select 한번에 가져오는지 테스트
-		
 	}
 
 	/* 

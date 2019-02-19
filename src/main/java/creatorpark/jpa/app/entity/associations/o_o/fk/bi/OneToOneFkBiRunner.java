@@ -12,8 +12,8 @@ import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
 import creatorpark.jpa.app.entity.associations.o_o.pk.uni.UserPkUni;
 import lombok.extern.java.Log;
 
-@Component
 @Log
+//@Component
 public class OneToOneFkBiRunner implements ApplicationRunner {
 	
 	@PersistenceContext
