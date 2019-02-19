@@ -12,16 +12,9 @@ import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
 import creatorpark.jpa.app.entity.associations.o_o.pk.uni.UserPkUni;
 import lombok.extern.java.Log;
 
-@Component
+//@Component
 @Log
 public class OneToOnePkBiRunner implements ApplicationRunner {
-	
-	/*  
-	 * 양방향은 Source Entity에서도 Target Entity의 참조를 갖게 된다.
-	 * Source Entity <-> Target Entity 서로 참조되도록<양방향> 한다는 뜻.
-	 *  
-	 * Source Entity PK와 Target Entity의 PK가 같은 경우 (Shared Primary Key)
-	 */
 	
 	@PersistenceContext
 	EntityManager em;
@@ -34,7 +27,12 @@ public class OneToOnePkBiRunner implements ApplicationRunner {
 
 	}
 	
-
+	/*  
+	 * 양방향은 Source Entity에서도 Target Entity의 참조를 갖게 된다.
+	 * Source Entity <-> Target Entity 서로 참조되도록<양방향> 한다는 뜻.
+	 *  
+	 * Source Entity PK와 Target Entity의 PK가 같은 경우 (Shared Primary Key)
+	 */
 	private void persist() {
 		UserPkBi user = UserPkBi.createUser("HELLO", AddressPkBi.createAddress("NOLLGU", "HAVEN"));
 		em.persist( user );

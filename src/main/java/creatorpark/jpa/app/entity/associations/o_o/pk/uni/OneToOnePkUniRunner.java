@@ -11,28 +11,23 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.java.Log;
 
 @Log
-//@Component
+@Component
 public class OneToOnePkUniRunner implements ApplicationRunner {
-	/* 
-	 * 단방향에서 Source Entity는 Target Entity의 존재를 모른다. 
-	 * Target -> Source로만 접근
-	 */
-	
+
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
 	@Transactional
 	public void run(ApplicationArguments args) throws Exception {
-
 		persist();
 		//select 한번에 가져오는지 테스트
 		
 	}
 
-	/**
-	 * user를 먼저 저장한 다음에 여기서 생긴 PK를 갖고 
-	 * 수작업으로 address에 저장한 다음에 저장해야 한다.
+	/* 
+	 * 단방향에서 Target Entity는 Source Entity의 존재를 모른다. Source -> Target으로만 접근
+	 * 그래서 user를 먼저 저장한 다음에 여기서 생긴 PK를 갖고 수작업으로 address에 저장한 다음에 저장해야 한다.
 	 * 고로 @OneToOne 단방향은 추천하지 않는다.
 	 */
 	private void persist() {
@@ -41,10 +36,8 @@ public class OneToOnePkUniRunner implements ApplicationRunner {
 		em.persist(user);
 		
 		log.info("PERSIST 2 - address");
-		AddressPkUni address = AddressPkUni.createAddress("SEODAEMUN", "SEOUL");
-		address.setId( user.getId() );
-		user.setAddress( address );
-		em.persist(user);
+		AddressPkUni address = AddressPkUni.createAddress(user, "SEODAEMUN", "SEOUL");
+		em.persist( address );
 		
 		em.flush();
 	}

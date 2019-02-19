@@ -32,10 +32,6 @@ public class UserPkUni implements Serializable {
 	private String name;
 	private String password;
 	
-	@OneToOne(cascade= CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private AddressPkUni address;
-	
 	public static UserPkUni createUser(String name ) {
 		UserPkUni user = new UserPkUni();
 		user.setPassword("HELLO");
