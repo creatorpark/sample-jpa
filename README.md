@@ -1,2 +1,4 @@
 # Sample Project for Spring Data Jpa
-Introduce OOP 
+
+## application.properties
+[application.propertes](https://creatorpark-tech-stack.tistory.com/2?category=812808)
