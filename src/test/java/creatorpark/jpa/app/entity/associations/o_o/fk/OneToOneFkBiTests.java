@@ -26,7 +26,6 @@ public class OneToOneFkBiTests {
 	@Test
 	public void persist() {
 		log.info("PERSIST - user_fk_bi");
-		
 		UserFkBi user = UserFkBi.createUser("NOLLER", AddressFkBi.createAddress("NOLLGU", "HAVEN"));
 		em.persist( user );
 	}
