@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(of= {"id"}, callSuper=false)
 @Entity(name="user_pk") // Target Entity, Parent
 public class UserPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
