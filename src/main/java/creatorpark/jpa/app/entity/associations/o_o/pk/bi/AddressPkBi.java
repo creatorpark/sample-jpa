@@ -1,19 +1,17 @@
 package creatorpark.jpa.app.entity.associations.o_o.pk.bi;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
-import creatorpark.jpa.vo.YesNo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,18 +19,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of={"id"}, callSuper=false)
-@Entity(name="address_pk") // Source Entity, Child
+@Entity (name="address_pk")
+// Source Entity, Child
 public class AddressPkBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private Long id;
-	
+
+	@JsonIgnore
 	@MapsId
-	@JoinColumn(name="id") //Join 되는 필드 이름(여기서는 id) 을 적는다.
-	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id")
+	@OneToOne( fetch = FetchType.LAZY, optional = false)
 	private UserPkBi user;
-	  
+
+    
 	private String state;
 	private String city;
 	
@@ -41,5 +42,10 @@ public class AddressPkBi implements Serializable {
 		address.setState( state );
 		address.setCity( city );
 		return address;
+	}
+
+	@Override
+	public String toString() {
+		return "AddressPkBi [id=" + id + ", state=" + state + ", city=" + city + "]";
 	}
 }
