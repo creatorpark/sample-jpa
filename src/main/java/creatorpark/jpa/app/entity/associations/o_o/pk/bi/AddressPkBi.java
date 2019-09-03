@@ -18,7 +18,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of={"id"}, callSuper=false)
+@EqualsAndHashCode(of={"id"})
 @Entity (name="address_pk")
 // Source Entity, Child
 public class AddressPkBi implements Serializable {

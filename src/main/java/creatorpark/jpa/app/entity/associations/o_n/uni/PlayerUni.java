@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
 import creatorpark.jpa.vo.YesNo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,7 +22,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(of= {"id"})
 @Entity
 public class PlayerUni implements Serializable {
 	private static final long serialVersionUID = 1L;

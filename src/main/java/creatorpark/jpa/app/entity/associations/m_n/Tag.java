@@ -10,13 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false, exclude= {"posts"})
+@EqualsAndHashCode(of= {"id"})
 @Entity // Target Entity
 public class Tag implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(of= {"id"})
 @Entity(name="user_fk") // Target Entity, Parent
 public class UserFkBi implements Serializable {
 	private static final long serialVersionUID = 1L;

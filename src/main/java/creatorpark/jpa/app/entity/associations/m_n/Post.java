@@ -20,7 +20,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false, exclude= {"tags"})
+@EqualsAndHashCode(of= {"id"})
 @Entity // Source Entity
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;

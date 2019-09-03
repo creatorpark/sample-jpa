@@ -20,7 +20,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false, exclude= {"players"})
+@EqualsAndHashCode(of= {"id"})
 @Entity(name="team")
 public class TeamBi implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
 import creatorpark.jpa.app.entity.associations.o_o.pk.uni.AddressPkUni;
 import creatorpark.jpa.app.entity.associations.o_o.pk.uni.UserPkUni;
 import creatorpark.jpa.vo.YesNo;
@@ -23,7 +24,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(of= {"id"})
 @Entity(name="address_fk")  // Source Entity
 public class AddressFkUni implements Serializable {
 	private static final long serialVersionUID = 1L;

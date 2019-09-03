@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
 import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false, exclude= {"players"})
+@EqualsAndHashCode(of= {"id"})
 @Entity
 public class TeamUni implements Serializable {
 	private static final long serialVersionUID = 1L;

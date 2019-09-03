@@ -12,12 +12,12 @@ import creatorpark.jpa.infra.audit.AuditorAwareBean;
 
 @Configuration
 @EnableJpaAuditing
-@EntityScan(
-	basePackageClasses = {Application.class, Jsr310JpaConverters.class}
-)
+@EntityScan(basePackageClasses = { Application.class, Jsr310JpaConverters.class })
 public class JpaConfig {
-  @Bean
-  AuditorAware<String> auditorAware() {
-    return new AuditorAwareBean();
-  }
+	
+	@Bean
+	AuditorAware<String> auditorAware() {
+		return new AuditorAwareBean();
+	}
+	
 }
