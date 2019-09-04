@@ -1,17 +1,7 @@
 # Sample Project for Spring Data Jpa
 
 ## application.properties
-[application.propertes](https://creatorpark-tech-stack.tistory.com/2?category=812808)
-
-## Table of Contents
-
-* Concepts
-
-
-* Relation
-    * [@OneToOne](#@OneToOne)
-    * [@OneToMany](#@OneToMany)
-    * [@OneToOne](#@OneToOne)
+Jpa 설정 [application.propertes](https://creatorpark-tech-stack.tistory.com/2?category=812808)
 
 ## Concepts
 ### Source/Target Entity
@@ -31,14 +21,15 @@ Main Entity가 Target Entity가 되어 Source Entity에게 FK를 제공하게 �
 [참고자료](https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/)
 
 ## Relation
-### @OneToOne
+### OneToOne
 1:1 관계에서 동일 PK를 사용하면 SELECT에서 INDEX를 한쪽만 타도 되기 때문에 50%의 성능향상이 있다.
+
 [참고자료](https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/)
   
 1:1 다른사람 정리
 https://mycup.tistory.com/223?category=665711
 
-### @OneToMany
+### OneToMany
 Source Entity
 - 항상 Many쪽이 Source Entity이다.
 Target Entity
@@ -47,7 +38,7 @@ Target Entity
 이슈 : 1:N 단방향의 성능 저하 현상 
 - [참고자료](https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/)
 
-### @ManyToMany
+### ManyToMany
 @ManyToMany 관계에서는 두 Entity의 JOIN관계를 저장하는 Join Table이 사용된다.
   
 Source Entity
@@ -66,7 +57,7 @@ Target Entity
 - mappedBy 속성을 적는다.
 - 참조만 가능하다.
 
-```
+```java
 @ManyToMany(mappedBy="tags")
 private Set<Post> posts = new HashSet<>();
 ```
