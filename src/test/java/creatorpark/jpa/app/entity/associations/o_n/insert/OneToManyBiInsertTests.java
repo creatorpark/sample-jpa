@@ -1,18 +1,14 @@
 package creatorpark.jpa.app.entity.associations.o_n.insert;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import creatorpark.jpa.ApplicationTests;
 import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
 import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
+import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBiRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,17 +17,17 @@ import lombok.extern.slf4j.Slf4j;
 public class OneToManyBiInsertTests {
 
 
-	@PersistenceContext
-	EntityManager em;
+	@Autowired
+	TeamBiRepository repository;
 	
 	@Test
 	public void insert() {
 		log.info("INSERT - 1:N team_bi");
 		
-		TeamBi team = TeamBi.createTeam("NOLLS");
+		TeamBi team = TeamBi.createTeam("HANWHA");
 		team.addPlayer( PlayerBi.createPlayer("N1", "1"));
 		team.addPlayer( PlayerBi.createPlayer("N2", "2"));
-		em.persist( team );
+		repository.save(team);
 	}
 }
 

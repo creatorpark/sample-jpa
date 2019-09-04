@@ -6,13 +6,15 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import creatorpark.jpa.app.entity.associations.o_n.uni.TeamUni;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of= {"id"})
-@Entity(name="team")
+@Entity
 public class TeamBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -31,7 +33,8 @@ public class TeamBi implements Serializable {
 	
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="team", orphanRemoval = true)
+	@Fetch(FetchMode.JOIN)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="team", fetch = FetchType.EAGER)
 	private Set<PlayerBi> players = new HashSet<>();
 	
 	public void addPlayer(PlayerBi player) {
@@ -49,6 +52,14 @@ public class TeamBi implements Serializable {
 		team.setName(name);
 		return team;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for( PlayerBi plyerbi : players) {
+			sb.append( plyerbi.toString() );
+		}
+		return "TeamBi [id=" + id + ", name=" + name + ",\nplayers=" + sb.toString() + "\n]";
+	}
 	
 }

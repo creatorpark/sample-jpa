@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.4.RELEASE'
+		springBootVersion = '2.1.7.RELEASE'
 		querydslVersion = "4.2.1"
 	}
 	repositories {
@@ -9,11 +9,13 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -56,7 +58,6 @@ dependencies {
   	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
-
 def generated = "src/querydsl"
 
 sourceSets {
@@ -70,4 +71,6 @@ tasks.withType(JavaCompile) {
 clean.doLast {
     file(generated).deleteDir()
 }
+
+
 

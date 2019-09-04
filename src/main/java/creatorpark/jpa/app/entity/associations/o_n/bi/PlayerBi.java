@@ -24,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of= {"id"})
-@Entity(name="player")
+@Entity
 public class PlayerBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,8 +35,8 @@ public class PlayerBi implements Serializable {
 	private String name;
 	private String uniformNumber;
 	
-	@JoinColumn(name="team_id")
-	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="team_bi_id")
+	@ManyToOne
 	private TeamBi team = new TeamBi();;
 	
 	public static PlayerBi createPlayer(String name, String uniformNumber) {
@@ -44,6 +44,11 @@ public class PlayerBi implements Serializable {
 		player.setName( name );
 		player.setUniformNumber( uniformNumber );
 		return player;
+	}
+
+	@Override
+	public String toString() {
+		return "\nPlayer [id=" + id + ", uniformNumber=" + uniformNumber + "]";
 	}
 	  
 }
