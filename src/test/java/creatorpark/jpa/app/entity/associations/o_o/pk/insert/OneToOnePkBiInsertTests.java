@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_o.pk;
+package creatorpark.jpa.app.entity.associations.o_o.pk.insert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OneToOnePkBiTests {
+public class OneToOnePkBiInsertTests {
 
 	@PersistenceContext
 	EntityManager em;
@@ -25,7 +25,7 @@ public class OneToOnePkBiTests {
 	@Test
 	@Transactional
 	@Rollback(false)
-	public void persist() {
+	public void insert() {
 		UserPkBi user = UserPkBi.createUser("HELLO", AddressPkBi.createAddress("놀구", "있네"));
 		System.out.println(user);
 		em.persist( user );

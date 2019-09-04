@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.m_n;
+package creatorpark.jpa.app.entity.associations.m_n.insert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,20 +11,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import creatorpark.jpa.ApplicationTests;
+import creatorpark.jpa.app.entity.associations.m_n.Post;
+import creatorpark.jpa.app.entity.associations.m_n.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ManyToManyTests {
+public class ManyToManyInsertTests {
 
 
 	@PersistenceContext
 	EntityManager em;
 	
 	@Test
-	public void persistTest() {
-		log.info("PERSIST - M:N post");
+	public void insert() {
+		log.info("INSERT - M:N post");
 		
 		Post post = Post.createPost("HAHAHA");
 		post.addTag(Tag.createTag("N!"));

@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_o.fk;
+package creatorpark.jpa.app.entity.associations.o_n.insert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,24 +11,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import creatorpark.jpa.ApplicationTests;
-import creatorpark.jpa.app.entity.associations.o_o.fk.bi.AddressFkBi;
-import creatorpark.jpa.app.entity.associations.o_o.fk.bi.UserFkBi;
+import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
+import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OneToOneFkBiTests {
+public class OneToManyBiInsertTests {
+
 
 	@PersistenceContext
 	EntityManager em;
 	
 	@Test
-	public void persist() {
-		log.info("PERSIST - user_fk_bi");
-		UserFkBi user = UserFkBi.createUser("NOLLER", AddressFkBi.createAddress("NOLLGU", "HAVEN"));
-		em.persist( user );
+	public void insert() {
+		log.info("INSERT - 1:N team_bi");
+		
+		TeamBi team = TeamBi.createTeam("NOLLS");
+		team.addPlayer( PlayerBi.createPlayer("N1", "1"));
+		team.addPlayer( PlayerBi.createPlayer("N2", "2"));
+		em.persist( team );
 	}
-
 }
 

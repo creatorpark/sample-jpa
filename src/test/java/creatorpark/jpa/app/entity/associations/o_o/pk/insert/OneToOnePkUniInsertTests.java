@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_o.pk;
+package creatorpark.jpa.app.entity.associations.o_o.pk.insert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OneToOnePkUniTests {
+public class OneToOnePkUniInsertTests {
 
 	@PersistenceContext
 	EntityManager em;
@@ -31,12 +31,12 @@ public class OneToOnePkUniTests {
 	 * 고로 @OneToOne 단방향은 추천하지 않는다.
 	 */
 	@Test
-	public void persist() {
-		log.info("PERSIST 1 - user_pk");
+	public void insert() {
+		log.info("INSERT 1 - user_pk");
 		UserPkUni user = UserPkUni.createUser("JH");
 		em.persist(user);
 		
-		log.info("PERSIST 2 - address_pk");
+		log.info("INSERT 2 - address_pk");
 		AddressPkUni address = AddressPkUni.createAddress(user, "SEODAEMUN", "SEOUL");
 		em.persist( address );
 		
