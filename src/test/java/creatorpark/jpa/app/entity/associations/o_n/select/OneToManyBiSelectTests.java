@@ -1,5 +1,7 @@
 package creatorpark.jpa.app.entity.associations.o_n.select;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -34,7 +36,12 @@ public class OneToManyBiSelectTests {
 //		
 //		repository.save(team);
 //		
-		TeamBi result = repository.findRyu(2L, "99");
-		System.out.println(result);
+//		List<PlayerBi> result = repository.findRyu(2L, "99");
+//		System.out.println(result.size());
+//		System.out.println(result.get(0));
+		
+		List<TeamBi> result2 = repository.findRyuTeam(2L, "99");
+		System.out.println(result2.size());
+		System.out.println(result2.get(0));
 	}
 }

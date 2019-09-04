@@ -33,7 +33,6 @@ public class TeamBi implements Serializable {
 	
 	private String name;
 
-	@Fetch(FetchMode.JOIN)
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="team", fetch = FetchType.EAGER)
 	private Set<PlayerBi> players = new HashSet<>();
 	

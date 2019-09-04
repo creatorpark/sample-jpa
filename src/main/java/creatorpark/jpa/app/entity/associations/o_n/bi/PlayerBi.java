@@ -1,22 +1,17 @@
 package creatorpark.jpa.app.entity.associations.o_n.bi;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 
-import creatorpark.jpa.vo.YesNo;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,8 +30,9 @@ public class PlayerBi implements Serializable {
 	private String name;
 	private String uniformNumber;
 	
+	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name="team_bi_id")
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private TeamBi team = new TeamBi();;
 	
 	public static PlayerBi createPlayer(String name, String uniformNumber) {
