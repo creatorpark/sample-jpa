@@ -1,10 +1,10 @@
 package creatorpark.jpa.app.entity.associations.o_n.uni;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
+import creatorpark.jpa.infra.app.GenericRepository;
+
 @Repository
-public interface TeamUniRepository extends JpaRepository<TeamUni,Long>, QuerydslPredicateExecutor<TeamUni> {
+public interface TeamUniRepository extends GenericRepository<TeamUni, Long> {
 
 }
