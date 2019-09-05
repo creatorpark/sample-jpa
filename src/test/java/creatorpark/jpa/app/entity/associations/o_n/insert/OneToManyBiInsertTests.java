@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class OneToManyBiInsertTests {
 
-
 	@Autowired
 	TeamBiRepository repository;
 	

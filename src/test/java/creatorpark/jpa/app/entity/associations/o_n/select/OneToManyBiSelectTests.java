@@ -1,16 +1,24 @@
 package creatorpark.jpa.app.entity.associations.o_n.select;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.is;
 
 import javax.transaction.Transactional;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
 import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
+import creatorpark.jpa.app.entity.associations.o_n.bi.QPlayerBi;
+import creatorpark.jpa.app.entity.associations.o_n.bi.QTeamBi;
 import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
 import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBiRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -21,27 +29,43 @@ import lombok.extern.slf4j.Slf4j;
 public class OneToManyBiSelectTests {
 	
 	@Autowired
+	JPAQueryFactory jpaQueryFactory;
+	
+	@Autowired
 	TeamBiRepository repository;
 
 	@Test
 	@Transactional
-	public void select() {
+	public void selectWithInnerJoinFiltering() {
+		QTeamBi team = QTeamBi.teamBi;
+		QPlayerBi player = QPlayerBi.playerBi;
+		TeamBi result = jpaQueryFactory
+							.selectFrom(team)
+								.innerJoin(team.players, player).fetchJoin() // fetchJoin() : Join과 동시 child 객체 Fetch도 같이 하도록. 
+								.where(team.id.eq(1L)
+								.and(player.uniformNumber.eq("99")))
+								.fetchOne();
 		
-//		TeamBi team = TeamBi.createTeam("HANWHA");
-//		team.addPlayer( PlayerBi.createPlayer("NAME1", "1"));
-//		team.addPlayer( PlayerBi.createPlayer("NAME2", "2"));
-//		team.addPlayer( PlayerBi.createPlayer("NAME3", "3"));
-//		team.addPlayer( PlayerBi.createPlayer("NAME4", "4"));
-//		team.addPlayer( PlayerBi.createPlayer("NAME5", "99"));
-//		
-//		repository.save(team);
-//		
-//		List<PlayerBi> result = repository.findRyu(2L, "99");
-//		System.out.println(result.size());
-//		System.out.println(result.get(0));
-		
-		List<TeamBi> result2 = repository.findRyuTeam(2L, "99");
-		System.out.println(result2.size());
-		System.out.println(result2.get(0));
+		Assert.assertThat( result.getPlayers().size(), is(1));
 	}
+
+	private void joinWithPaging() {
+		QTeamBi teamBi = QTeamBi.teamBi;
+		QPlayerBi player = QPlayerBi.playerBi;
+
+		// Join with paging
+		// https://stackoverflow.com/questions/47701172/how-to-join-multiple-querydsl-tables
+	    Predicate predicate = new BooleanBuilder();
+	}
+	
+	private void insertData() {
+		TeamBi team = TeamBi.createTeam("HANWHA");
+		team.addPlayer( PlayerBi.createPlayer("NAME1", "1"));
+		team.addPlayer( PlayerBi.createPlayer("NAME2", "2"));
+		team.addPlayer( PlayerBi.createPlayer("NAME3", "3"));
+		team.addPlayer( PlayerBi.createPlayer("NAME4", "4"));
+		team.addPlayer( PlayerBi.createPlayer("NAME5", "99"));
+		repository.saveAndFlush(team);
+	}
+
 }

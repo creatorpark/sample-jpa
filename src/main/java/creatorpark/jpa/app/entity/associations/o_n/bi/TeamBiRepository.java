@@ -14,14 +14,24 @@ public interface TeamBiRepository extends JpaRepository<TeamBi,Long>, QuerydslPr
 //	List<TeamBi> findByPlayers_uniformNumber(String uniformNumber);
 	
 	@Query("SELECT p "
-		+ "   FROM TeamBi t JOIN FETCH PlayerBi p on t.id = p.team"
-		+ "  WHERE t.id=:id"
-		+ "    AND p.uniformNumber = :uniformNumber ") 
+	    + "   FROM TeamBi t JOIN FETCH PlayerBi p on t.id = p.team "
+        + "                        AND p.uniformNumber = :uniformNumber " 
+		+ "  WHERE t.id=:id") 
 	List<PlayerBi> findRyu(@Param("id") Long id,@Param("uniformNumber")String uniformNumber);
 	
-	@Query("SELECT t,p "
-			+ "   FROM TeamBi t JOIN FETCH PlayerBi p on t.id = p.team"
-			+ "  WHERE t.id=:id"
-			+ "    AND p.uniformNumber = :uniformNumber ") 
-	List<TeamBi> findRyuTeam(@Param("id") Long id,@Param("uniformNumber")String uniformNumber);
+	@Query("SELECT t, p "
+	    + "   FROM TeamBi t JOIN FETCH PlayerBi p on t.id = p.team "
+	    + "  WHERE t.id=:id "
+	    + "    AND p.uniformNumber = :uniformNumber "	    
+		)
+	List<Object[]> findRyuTeam(@Param("id") Long id,@Param("uniformNumber")String uniformNumber);
+	
+	@Query("SELECT t "
+		+ "   FROM TeamBi t JOIN FETCH PlayerBi p on t.id = p.team "
+        + "  WHERE t.id=:id "
+		+ "    AND p.uniformNumber = :uniformNumber "	    
+		)
+	TeamBi findRyuTeamQuery(@Param("id") Long id,@Param("uniformNumber")String uniformNumber);
+
 }
+ 

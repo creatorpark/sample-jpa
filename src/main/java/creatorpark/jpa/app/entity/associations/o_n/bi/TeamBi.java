@@ -1,8 +1,8 @@
 package creatorpark.jpa.app.entity.associations.o_n.bi;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,9 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,8 +30,8 @@ public class TeamBi implements Serializable {
 	
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="team", fetch = FetchType.EAGER)
-	private Set<PlayerBi> players = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="team")
+	private List<PlayerBi> players = new ArrayList<PlayerBi>();
 	
 	public void addPlayer(PlayerBi player) {
 		player.setTeam( this );

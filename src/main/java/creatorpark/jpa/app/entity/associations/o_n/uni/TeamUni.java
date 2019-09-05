@@ -1,19 +1,16 @@
 package creatorpark.jpa.app.entity.associations.o_n.uni;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import creatorpark.jpa.app.entity.associations.o_n.bi.PlayerBi;
-import creatorpark.jpa.app.entity.associations.o_n.bi.TeamBi;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +30,7 @@ public class TeamUni implements Serializable {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<PlayerUni> players = new HashSet<>();
+	private List<PlayerUni> players = new ArrayList<>();
 
 	public static TeamUni createTeam(String name) {
 		TeamUni team = new TeamUni();

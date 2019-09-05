@@ -3,6 +3,7 @@ package creatorpark.jpa.app.entity.associations.o_n.bi;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,10 +31,9 @@ public class PlayerBi implements Serializable {
 	private String name;
 	private String uniformNumber;
 	
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name="team_bi_id")
-	@ManyToOne(optional = false)
-	private TeamBi team = new TeamBi();;
+	@ManyToOne()
+	private TeamBi team = new TeamBi();
 	
 	public static PlayerBi createPlayer(String name, String uniformNumber) {
 		PlayerBi player = new PlayerBi();
@@ -41,6 +41,7 @@ public class PlayerBi implements Serializable {
 		player.setUniformNumber( uniformNumber );
 		return player;
 	}
+	
 
 	@Override
 	public String toString() {
