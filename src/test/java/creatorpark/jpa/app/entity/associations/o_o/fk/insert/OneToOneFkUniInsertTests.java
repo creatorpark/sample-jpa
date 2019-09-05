@@ -1,18 +1,15 @@
 package creatorpark.jpa.app.entity.associations.o_o.fk.insert;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import creatorpark.jpa.ApplicationTests;
 import creatorpark.jpa.app.entity.associations.o_o.fk.uni.AddressFkUni;
+import creatorpark.jpa.app.entity.associations.o_o.fk.uni.AddressFkUniRepository;
 import creatorpark.jpa.app.entity.associations.o_o.fk.uni.UserFkUni;
+import creatorpark.jpa.app.entity.associations.o_o.fk.uni.UserFkUniRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,8 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class OneToOneFkUniInsertTests {
 
-	@PersistenceContext
-	EntityManager em;
+	@Autowired
+	UserFkUniRepository userRepository;
+	
+	@Autowired
+	AddressFkUniRepository addressRepository;
 	
 	/* 
 	 * 단방향에서 Target Entity는 Source Entity의 존재를 모른다. Source -> Target으로만 접근
@@ -32,13 +32,12 @@ public class OneToOneFkUniInsertTests {
 	public void insert() {
 		log.info("INSERT 1 - user_fk");
 		UserFkUni user = UserFkUni.createUser("JH");
-		em.persist(user);
+		userRepository.save(user);
 		
 		log.info("INSERT 2 - address_fk");
 		AddressFkUni address = AddressFkUni.createAddress(user, "MAPOGU", "SEOUL");
-		em.persist( address );
+		addressRepository.save( address );
 		
-		em.flush();
 	}
 
 }

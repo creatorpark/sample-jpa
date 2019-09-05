@@ -34,6 +34,8 @@ public class OneToManyBiSelectTests {
 	@Autowired
 	TeamBiRepository repository;
 
+	//TODO 기본 값 세팅하는 것 넣기
+	
 	@Test
 	@Transactional
 	public void selectWithInnerJoinFiltering() {
@@ -46,7 +48,7 @@ public class OneToManyBiSelectTests {
 								.and(player.uniformNumber.eq("99")))
 								.fetchOne();
 		
-		Assert.assertThat( result.getPlayers().size(), is(1));
+		Assert.assertThat( result.getPlayers().size(), is(1) );
 	}
 
 	private void joinWithPaging() {
@@ -60,11 +62,11 @@ public class OneToManyBiSelectTests {
 	
 	private void insertData() {
 		TeamBi team = TeamBi.createTeam("HANWHA");
-		team.addPlayer( PlayerBi.createPlayer("NAME1", "1"));
-		team.addPlayer( PlayerBi.createPlayer("NAME2", "2"));
-		team.addPlayer( PlayerBi.createPlayer("NAME3", "3"));
-		team.addPlayer( PlayerBi.createPlayer("NAME4", "4"));
-		team.addPlayer( PlayerBi.createPlayer("NAME5", "99"));
+		team.addPlayer( PlayerBi.createPlayer("IEE", "1"));
+		team.addPlayer( PlayerBi.createPlayer("KEE", "2"));
+		team.addPlayer( PlayerBi.createPlayer("JEE", "3"));
+		team.addPlayer( PlayerBi.createPlayer("REE", "4"));
+		team.addPlayer( PlayerBi.createPlayer("RYU", "99"));
 		repository.saveAndFlush(team);
 	}
 

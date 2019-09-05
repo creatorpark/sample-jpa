@@ -1,17 +1,13 @@
 package creatorpark.jpa.app.entity.associations.m_n.insert;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import creatorpark.jpa.ApplicationTests;
 import creatorpark.jpa.app.entity.associations.m_n.Post;
+import creatorpark.jpa.app.entity.associations.m_n.PostRepository;
 import creatorpark.jpa.app.entity.associations.m_n.Tag;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ManyToManyInsertTests {
 
 
-	@PersistenceContext
-	EntityManager em;
+	@Autowired
+	PostRepository repository;
 	
 	@Test
 	public void insert() {
@@ -33,7 +29,7 @@ public class ManyToManyInsertTests {
 		post.addTag(Tag.createTag("N2!"));
 		post.addTag(Tag.createTag("N3!"));
 		
-		em.persist(post);
+		repository.save(post);
 		
 	}
 }
