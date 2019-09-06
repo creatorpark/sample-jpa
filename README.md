@@ -35,9 +35,10 @@ public class PlayerBi implements Serializable {
 	private TeamBi team = new TeamBi();
 ```
 
-### CASCADE
+    
+### CASCADE - PERSIST, MERGE, REMOVE, REFRESH, DETACH
 - CASCADE는 CUD에 영향을 준다.
-- Parent Entity를 저장할 때 Child Entity를 어디까지 영향권에 둘지(Cascade) 설정한다.
+- Parent Entity를 저장할 때 Child Entity를 어디까지 영향권에 둘지(Cascade)를 설정한다.
 - EntityManager가 관리하는 Entity Life Cycle과 관련이 있다.  
 ![persistenceStatus](./docs/images/persistenceStatus.png)  
 - 1:1 관계 - Cascade.ALL  
@@ -46,16 +47,18 @@ public class PlayerBi implements Serializable {
 
 [참고](https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/)
   
-### FETCH - EAGER, LAZY
+### FETCH - Eager, Lazy
 - FETCH는 R에 영향을 준다.
-- Parent Entity를 불러올 때,  
-Child Entity를 바로 가져 올 것인가(EAGER)?  
-Child Entity를 호출하는 시점에 불러 올 것인가?
+- Parent Entity에서 Child Entity를 가져오는 시점을 정의한다.  
+Eager는 Parent가 호출되는 시점에 Child를 같이 가져온다.    
+Lazy는 Child Entity가 호출되는  시점에 가져온다.  
+
 - JPA 기본 전략  (x:1 관계 -> Eager) (x:N 관계 -> Lazy)
 - 1:1 관계 - Fetch.Eager
 - 1:N 관계 - Fetch.Lazy
 - N:1 관계 - Fetch.Eager 
-- M:N 관계 - Fetch.Lazy
+- M:N 관계 - Fetch.Lazy  
+
 [참고](https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/)
 
 ## Relation
@@ -74,7 +77,7 @@ Child Entity를 호출하는 시점에 불러 올 것인가?
  [참고](https://stackoverflow.com/questions/12465260/jpa-hibernate-inner-join-between-parent-and-child-tables)
 
 ### @ManyToOne
-- 1:N 관계에서 양방향 관계를 맺고, Child(Source) Entity에 적는다. 
+- 1:N 관계에서 양방향 관계를 맺은 뒤, Child(Source) Entity에 적는다. 
 
 ### @ManyToMany
 - @ManyToMany 관계는 두 Entity의 JOIN관계를 저장하는 Join Table을 사용한다.  
