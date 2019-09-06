@@ -10,7 +10,7 @@
 Target Entity  
 - (FK) non-owning side (Parent Entity)  
 - Target Entity는 Main Entity이다.
-- Source Entity는 FK의 관리 주체를 말하는 것이지, Parent(Main) Entity는 아니다. 헤깔릴 수 있다.    
+- Source Entity는 FK의 관리 주체를 말하는 것이지, Parent(Main) Entity는 아니다. 매우 헤깔린다.    
 - mappedBy(상대편(Source Entity에 있는 자기의 필드명, 예제에서는 team) 속성을 적는다.
   
 ```java
@@ -35,9 +35,9 @@ public class PlayerBi implements Serializable {
 	private TeamBi team = new TeamBi();
 ```
 
-### CASCASE
+### CASCADE
 - CASCADE는 CUD에 영향을 준다.
-- Parent Entity를 저장할 때 Child Entity도 아디까지 전이시킬 것인지를 설정한다.
+- Parent Entity를 저장할 때 Child Entity를 어디까지 영향권에 둘지(Cascade) 설정한다.
 - EntityManager가 관리하는 Entity Life Cycle과 관련이 있다.  
 ![persistenceStatus](./docs/images/persistenceStatus.png)  
 - 1:1 관계 - Cascade.ALL  
