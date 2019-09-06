@@ -1,20 +1,32 @@
 # Sample Project for Spring Data Jpa
 
 ## application.properties
-Jpa 설정 [application.propertes](https://creatorpark-tech-stack.tistory.com/2?category=812808)
+[참고](https://creatorpark-tech-stack.tistory.com/2?category=812808)
 
 ## Concepts
 ### Source/Target Entity
+![Source,Target Entity](./docs/images/sourcetarge.png)  
 Source Entity
-- owning side (Child)  
+- (FK) owning side (Child)  
 - FK필드를 소유,저장 및 관리하는 Entity를 말한다.  
-- @JoinColumn(name=FK칼럼(DB)을 적는다.)  
+- @JoinColumn(name=FK(DB의칼럼명)를 적는다.)
+
+```java
+	@JoinColumn(name="team_bi_id")
+	@ManyToOne()
+	private TeamBi team = new TeamBi();
+```
 
 Target Entity  
-- non-owning side (Parent)  
-- mappedBy 속성을 적는다.    
-Source Entity가 FK관리 주체인데, 실제 설계할 때 개념상 Target Entity가 Main Entity가 된다.    
-Source Entity와 그 의미가 헤깔리므로 주의한다.  
+- (FK) non-owning side (Parent)  
+- Target Entity는 Parent(Root,Main) Entity이다.
+- Source Entity는 FK의 관리 주체를 말하는 것이지, Parent(Main) Entity가 아니다. 헤깔릴 수 있다.    
+- mappedBy(상대편(Source Entity에 있는 자기의 필드명, 예제에서는 team) 속성을 적는다.
+  
+```java
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="team")
+	private List<PlayerBi> players = new ArrayList<PlayerBi>();
+```
 
 ### CASCASE
 [참고](https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/)
