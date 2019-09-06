@@ -6,8 +6,20 @@
 ## Concepts
 ### Source/Target Entity
 ![Source,Target Entity](./docs/images/sourcetarge.png)  
+
+Target Entity  
+- (FK) non-owning side (Parent Entity)  
+- Target Entity는 Main Entity이다.
+- Source Entity는 FK의 관리 주체를 말하는 것이지, Parent(Main) Entity는 아니다. 헤깔릴 수 있다.    
+- mappedBy(상대편(Source Entity에 있는 자기의 필드명, 예제에서는 team) 속성을 적는다.
+  
+```java
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="team")
+	private List<PlayerBi> players = new ArrayList<PlayerBi>();
+```
+
 Source Entity
-- (FK) owning side (Child)  
+- (FK) owning side (Child Entity)  
 - FK필드를 소유,저장 및 관리하는 Entity를 말한다.  
 - @JoinColumn(name=FK(DB의칼럼명)를 적는다.)
 
@@ -17,44 +29,45 @@ Source Entity
 	private TeamBi team = new TeamBi();
 ```
 
-Target Entity  
-- (FK) non-owning side (Parent)  
-- Target Entity는 Parent(Root,Main) Entity이다.
-- Source Entity는 FK의 관리 주체를 말하는 것이지, Parent(Main) Entity가 아니다. 헤깔릴 수 있다.    
-- mappedBy(상대편(Source Entity에 있는 자기의 필드명, 예제에서는 team) 속성을 적는다.
-  
-```java
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="team")
-	private List<PlayerBi> players = new ArrayList<PlayerBi>();
-```
-
 ### CASCASE
+- CASCADE는 CUD에 영향을 준다.
+- Parent Entity를 저장할 때 Child Entity도 어떤 액션(Entity Manager가 관리하는 Entity Life Cycle과 관련이 있다.)에 같이할 것인가를 선택한다.
+- 1:1 관계 - Cascade.ALL  
+- 1:N 관계 - Cascade.ALL  
+- M:N 관계 - CascadeType.PERSIST, CascadeType.MERGE
+
 [참고](https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/)
   
-### LAZY
-[참고](https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/)
+### FETCH - EAGER, LAZY
+- FETCH는 R에 영향을 준다.
+- Parent Entity를 불러올 때, Child Entity를 바로 가져 올 것인가(EAGER)? Child Entity를 호출하는 시점에 불러 올 것인가?(LAZY)를 선택한다.
+- JPA 기본 전략은 다음과 같다. 상대 Entity가 :1 관계인 경우 Eager :N 관계인 경우 Lazy 이다.
+- 1:1 관계 - Fetch.Eager
+- 1:N 관계 - Fetch.Lazy
+- N:1 관계 - Fetch.Eager 
+- M:N 관계 - Fetch.Lazy
+참고](https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/)
 
 ## Relation
 
-### @OneToOne
-- Fetch.Eager를 기본 전략으로 한다.[참고](https://kwonnam.pe.kr/wiki/java/jpa/one-to-one)  
+### @OneToOne   
 - 1:1 PK는 SELECT에서 INDEX를 한쪽만 타기 때문에 1:1 FK보다 50% 성능이 좋다.[참고](https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/)
 - 1:1 에서는 INNER JOIN 과 LEFT JOIN 되고 안되고 차이를 분석하는게 이슈[참고](https://chanlee.wordpress.com/2012/07/04/jpa-%EC%A1%B0%EC%9D%B8%ED%8C%81-inner-or-outer-join/)
+- [참고](https://kwonnam.pe.kr/wiki/java/jpa/one-to-one)
 
 ### @OneToMany
-- Fetch.Lazy를 기본 전략으로 한다.  
-- 항상 One쪽이 Target Entity (Parent) Many쪽이 Source Entity(Child) 이다. 
+-  One쪽이 Parent(Target) Entity이다.
+- Many쪽이 Source(Child) Entity이다. 
 - 1:N 단방향의 성능 저하 현상 
 [참고](https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/)
-- JPA 1:N JOIN은 Query를 직접  작성하는 것만큼 쉽지 않다. 
+- JPA 1:N JOIN은 Spring Data @Query가 아닌 JPQL을 직접 해서 작성해야 작동한다.  
  [참고](https://stackoverflow.com/questions/12465260/jpa-hibernate-inner-join-between-parent-and-child-tables)
 
 ### @ManyToOne
-- Fetch.Eager를 기본 전략으로 한다.  
+- 1:N 관계에서 양방향 관계를 맺고, Child(Source) Entity에 적는다. 
 
 ### @ManyToMany
-- Fetch.Lazy를 기본 전략으로 한다.
-- @ManyToMany 관계에서는 두 Entity의 JOIN관계를 저장하는 Join Table이 사용된다.  
+- @ManyToMany 관계는 두 Entity의 JOIN관계를 저장하는 Join Table을 사용한다.  
   
 Source Entity
 - @JoinTable을 적고, joinColumns에 Join Table에서 참조하는 FK를 적는다.
