@@ -39,7 +39,9 @@ public class PlayerBi implements Serializable {
 ### CASCADE - PERSIST, MERGE, REMOVE, REFRESH, DETACH
 - CASCADE는 CUD에 영향을 준다.
 - Parent Entity를 저장할 때 Child Entity를 어디까지 영향권에 둘지(Cascade)를 설정한다.
-- EntityManager가 관리하는 Entity Life Cycle과 관련이 있다.  
+- 1:1, 1:N은 Parent의 Life Cycle과 Child Life Cycle이 같이 움직이므로 Cascade.ALL로 설정한다.
+- M:N은 Parent의 Life Cycle과 Child의 Life Cycle이 다르므로, SAVE일 때만 영향권에 둔다.  
+- EntityManager가 관리하는 Entity Life Cycle을 참고한다.  
 ![persistenceStatus](./docs/images/persistenceStatus.png)  
 - 1:1 관계 - Cascade.ALL  
 - 1:N 관계 - Cascade.ALL  
@@ -57,7 +59,7 @@ Lazy는 Child Entity가 호출되는  시점에 가져온다.
 - 1:1 관계 - Fetch.Eager
 - 1:N 관계 - Fetch.Lazy
 - N:1 관계 - Fetch.Eager 
-- M:N 관계 - Fetch.Lazy  
+- M:N 관계 - Fetch.Lazy
 
 [참고](https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/)
 
