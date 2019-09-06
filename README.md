@@ -4,14 +4,30 @@
 [참고](https://creatorpark-tech-stack.tistory.com/2?category=812808)
 
 ## Concepts
+### Direction - BiDirection, UniDirection
+
+
 ### Source/Target Entity
 ![Source,Target Entity](./docs/images/sourcetarge.png)  
 
+- 양방향 관계에서 Association의 Owner가 누구인지를 구분하기 위해 사용한다.
+- 양방향에서 연관을 관리하는 주체를 정확하게 설정하기 위함이다.
+- Source(Owner)/Target(non-Owning)으로 이를 구분한다.  
+
+Source Entity
+- (FK) owning side
+- FK필드를 소유,저장 및 관리하는 Entity를 말한다.
+- 1:1 관계 - Child Entity
+- 1:N 관계 - Child Entity
+- M:N 관계 - Parent Entity 
+- @JoinColumn(name=FK(DB의칼럼명)를 적는다.)
+
 Target Entity  
-- (FK) non-owning side (Parent Entity)  
-- Target Entity는 Main Entity이다.
-- Source Entity는 FK의 관리 주체를 말하는 것이지, Parent(Main) Entity는 아니다. 매우 헤깔린다.    
-- mappedBy(상대편(Source Entity에 있는 자기의 필드명, 예제에서는 team) 속성을 적는다.
+- (FK) non-owning side  
+- 1:1 관계 - Parent Entity
+- 1:N 관계 - Parent Entity
+- M:N 관계 - Child Entity     
+- mappedBy는 반대편(Source Entity)에 있는 자기의 필드명(예제에서는 team)을 속성값으로 적는다.
   
 ```java
 @Entity
@@ -20,11 +36,6 @@ public class TeamBi implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="team")
 	private List<PlayerBi> players = new ArrayList<PlayerBi>();
 ```
-
-Source Entity
-- (FK) owning side (Child Entity)  
-- FK필드를 소유,저장 및 관리하는 Entity를 말한다.  
-- @JoinColumn(name=FK(DB의칼럼명)를 적는다.)
 
 ```java
 @Entity
@@ -107,5 +118,5 @@ private Set<Post> posts = new HashSet<>();
 
 ### Entity Graph
 https://blog.leocat.kr/notes/2019/05/26/spring-data-using-entitygraph-to-customize-fetch-graph
-
+https://www.baeldung.com/jpa-entity-graph
 
