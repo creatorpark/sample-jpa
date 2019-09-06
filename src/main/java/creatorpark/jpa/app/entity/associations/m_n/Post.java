@@ -21,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of= {"id"})
-@Entity // Source Entity
+@Entity // Parent, Source Entity
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

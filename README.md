@@ -116,6 +116,11 @@ Target Entity
 private Set<Post> posts = new HashSet<>();
 ```
 
+### @ManyToMany with Extra Columns
+https://vladmihalcea.com/the-best-way-to-map-a-many-to-many-association-with-extra-columns-when-using-jpa-and-hibernate/
+https://hellokoding.com/jpa-many-to-many-extra-columns-relationship-mapping-example-with-spring-boot-maven-and-mysql/
+
+
 ### Entity Graph
 https://blog.leocat.kr/notes/2019/05/26/spring-data-using-entitygraph-to-customize-fetch-graph
 https://www.baeldung.com/jpa-entity-graph
