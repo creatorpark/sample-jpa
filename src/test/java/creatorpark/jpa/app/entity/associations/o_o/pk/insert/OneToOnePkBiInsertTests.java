@@ -1,17 +1,16 @@
 package creatorpark.jpa.app.entity.associations.o_o.pk.insert;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import creatorpark.jpa.app.entity.associations.o_o.pk.bi.AddressPkBi;
 import creatorpark.jpa.app.entity.associations.o_o.pk.bi.UserPkBi;
+import creatorpark.jpa.app.entity.associations.o_o.pk.bi.UserPkBiRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,8 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class OneToOnePkBiInsertTests {
 
-	@PersistenceContext
-	EntityManager em;
+	@Autowired
+	UserPkBiRepository repository;
 	
 	@Test
 	@Transactional
@@ -28,7 +27,7 @@ public class OneToOnePkBiInsertTests {
 	public void insert() {
 		UserPkBi user = UserPkBi.createUser("HELLO", AddressPkBi.createAddress("놀구", "있네"));
 		System.out.println(user);
-		em.persist( user );
+		repository.save(user);
 		System.out.println(user);
 	}
 

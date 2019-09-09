@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import creatorpark.jpa.app.entity.associations.m_n.extra.Book;
 import creatorpark.jpa.app.entity.associations.m_n.extra.BookRepository;
@@ -27,6 +29,8 @@ public class ManyToManyExtraColumnInsertTests {
 	PublisherRepository publisherRepository;
 	
 	@Test
+	@Transactional
+	@Rollback(false)
 	public void insert() {
 		log.info("INSERT - M:N with Extra Column");
 		

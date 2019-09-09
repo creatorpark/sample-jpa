@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of= {"id"})
-@Entity
+@Entity(name = "book_publisher_details")
 public class BookPublisher implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -37,6 +37,11 @@ public class BookPublisher implements Serializable {
 		this.book = book;
 		this.publisher = publisher;
 		this.id = new BookPublisherId(book.getId(), publisher.getId());
+	}
+
+	@Override
+	public String toString() {
+		return "BookPublisher [id=" + id + "]";
 	}
 	
 	
