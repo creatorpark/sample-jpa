@@ -34,9 +34,16 @@ public class OneToManyBiSelectTests {
 	@Autowired
 	TeamBiRepository repository;
 
-	//TODO 기본 값 세팅하는 것 넣기
-	
+
 	@Test
+	@Transactional
+	public void selectSpringDataWithInnerJoinFiltering() {
+		TeamBi result = repository.findByIdAndPlayers_uniformNumber( 2L, "99");
+		System.out.println(result.getPlayers().size());
+		Assert.assertThat( result.getPlayers().size(), is(1) );
+	}
+	
+//	@Test
 	@Transactional
 	public void selectWithInnerJoinFiltering() {
 		QTeamBi team = QTeamBi.teamBi;
@@ -47,7 +54,6 @@ public class OneToManyBiSelectTests {
 								.where(team.id.eq(1L)
 								.and(player.uniformNumber.eq("99")))
 								.fetchOne();
-		
 		Assert.assertThat( result.getPlayers().size(), is(1) );
 	}
 
