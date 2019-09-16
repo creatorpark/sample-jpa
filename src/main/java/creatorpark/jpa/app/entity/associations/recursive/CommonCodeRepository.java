@@ -1,4 +1,4 @@
-package creatorpark.jpa.app.entity.associations.o_n.recursive;
+package creatorpark.jpa.app.entity.associations.recursive;
 
 import org.springframework.stereotype.Repository;
 

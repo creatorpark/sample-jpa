@@ -8,13 +8,16 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import creatorpark.jpa.app.entity.associations.recursive.CommonCode;
+import creatorpark.jpa.app.entity.associations.recursive.CommonCodeRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class OneToManyRecursiveInsertTests {
-
+// https://stackoverflow.com/questions/3393515/jpa-how-to-have-one-to-many-relation-of-the-same-entity-type
+	
 	@Autowired
 	CommonCodeRepository repository;
 	
@@ -27,6 +30,7 @@ public class OneToManyRecursiveInsertTests {
 		CommonCode parent = new CommonCode();
 		parent.setCode(1);
 
+
 		CommonCode child = new CommonCode();
 		child.setCode(10);
 		child.setParent(parent);
@@ -36,7 +40,11 @@ public class OneToManyRecursiveInsertTests {
 		repository.save(child);
 
 		CommonCode commonCode = repository.findByCode(10);
+		
 		log.info(commonCode.toString());
+		
+		CommonCode pCommonCode = repository.findByCode(1);
+		log.info(pCommonCode.toString());
 	}
 }
 
