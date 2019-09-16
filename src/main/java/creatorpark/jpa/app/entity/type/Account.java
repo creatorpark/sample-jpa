@@ -27,7 +27,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @EqualsAndHashCode(of="id", callSuper=false)
-public class Account implements Serializable {
+public class Account extends Audit implements Serializable {
 	
 	// https://stackoverflow.com/questions/2020904/when-and-why-jpa-entities-should-implement-serializable-interface
 	private static final long serialVersionUID = 1L;
@@ -51,7 +51,5 @@ public class Account implements Serializable {
 	@MapKeyColumn(name="ADDRESS_TITLE") // <엄마집, 주소> 이렇게 매핑해서 쓴다. ADDRESS_TITLE은 DB의 칼럼
 	private Map<String, Address> addresses = new HashMap<>(); 
 	
-	@Embedded
-	private Audit audit;
  
 }

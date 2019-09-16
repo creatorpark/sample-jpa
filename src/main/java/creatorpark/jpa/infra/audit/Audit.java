@@ -3,8 +3,8 @@ package creatorpark.jpa.infra.audit;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,13 +12,15 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.querydsl.core.annotations.QueryExclude;
+
 import lombok.Getter;
 import lombok.Setter;
 
-//Spring-Data에서 제공하는 Auditing 서비스.
 @Getter
 @Setter
-@Embeddable
+@QueryExclude // QClass 생성시 제외
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class Audit {
   
@@ -36,7 +38,7 @@ public class Audit {
   
   @LastModifiedDate
   @Column(name = "LAST_MODIFIED_DATE", insertable=true, updatable=true)
-  protected LocalDateTime lastModifiedDate; 
+  protected LocalDateTime lastModifiedDate;
   
   public Audit() {
 
