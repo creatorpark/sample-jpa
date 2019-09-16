@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 
 import lombok.EqualsAndHashCode;
@@ -19,6 +21,13 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of= {"id"})
 @Entity
+@NamedEntityGraph(
+		  name = "graph.parentAndChild",
+		  attributeNodes = {
+		    @NamedAttributeNode("parent"),
+		    @NamedAttributeNode("children")
+		  }
+		)
 public class CommonCode implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

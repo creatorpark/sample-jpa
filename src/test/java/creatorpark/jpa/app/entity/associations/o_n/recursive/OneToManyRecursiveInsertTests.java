@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class OneToManyRecursiveInsertTests {
 // https://stackoverflow.com/questions/3393515/jpa-how-to-have-one-to-many-relation-of-the-same-entity-type
+// N+1 문제 발생하는거 NameEntityGraph로 해결
 	
 	@Autowired
 	CommonCodeRepository repository;
