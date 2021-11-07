@@ -21,8 +21,6 @@ public class BookPublisherId implements Serializable {
 	
 	@Column(name="publisher_id")
 	private Long publisherId;
-	
-	
-	
-	
+
+
 }

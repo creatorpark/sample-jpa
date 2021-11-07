@@ -1,38 +1,34 @@
-buildscript {
-	ext {
-		springBootVersion = '2.1.7.RELEASE'
-		querydslVersion = "4.2.1"
-	}
-	repositories {
-		mavenCentral()
-		maven { url "https://plugins.gradle.org/m2/" }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
-	}
+plugins {
+	id 'org.springframework.boot' version '2.5.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'java-library'
+	id 'maven-publish'
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group = 'creatorpark'
 version = '1.0.0'
-sourceCompatibility = '1.8'
+sourceCompatibility = '1.11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
 	mavenCentral()
 }
 
-test {
-  exclude '**/*Test*'
+ext {
+	springBootVersion = '2.5.0'
+	querydslVersion = "4.2.1"
 }
 
-configurations {
-    providedRuntime
+test {
+	exclude '**/*Test*'
 }
 
 dependencies {
@@ -58,18 +54,16 @@ dependencies {
   	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
-def generated = "src/querydsl"
-
+// Make Generated Source Files
+def generated = "src/generated"
 sourceSets {
-    main.java.srcDirs += [ generated ]
+	main.java.srcDirs += [generated]
 }
- 
 tasks.withType(JavaCompile) {
-    options.annotationProcessorGeneratedSourcesDirectory = file(generated)
+	options.annotationProcessorGeneratedSourcesDirectory = file(generated)
 }
- 
 clean.doLast {
-    file(generated).deleteDir()
+	file(generated).deleteDir()
 }
 
 

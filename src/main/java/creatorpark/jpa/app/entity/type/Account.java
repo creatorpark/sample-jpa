@@ -28,7 +28,6 @@ import lombok.Setter;
 @Entity
 @EqualsAndHashCode(of="id", callSuper=false)
 public class Account extends Audit implements Serializable {
-	
 	// https://stackoverflow.com/questions/2020904/when-and-why-jpa-entities-should-implement-serializable-interface
 	private static final long serialVersionUID = 1L;
 
@@ -50,6 +49,4 @@ public class Account extends Audit implements Serializable {
 //	@CollectionTable(name="ACCOUNT_ADDRESSES", joinColumns = @JoinColumn(name="ID")) //  이 어노테이션은 상세설정이다. 생략가능하다.
 	@MapKeyColumn(name="ADDRESS_TITLE") // <엄마집, 주소> 이렇게 매핑해서 쓴다. ADDRESS_TITLE은 DB의 칼럼
 	private Map<String, Address> addresses = new HashMap<>(); 
-	
- 
 }

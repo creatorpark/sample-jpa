@@ -8,8 +8,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import creatorpark.jpa.app.entity.associations.recursive.CommonCode;
-import creatorpark.jpa.app.entity.associations.recursive.CommonCodeRepository;
+import creatorpark.jpa.app.entity.recursive.CommonCode;
+import creatorpark.jpa.app.entity.recursive.CommonCodeRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -9,7 +9,7 @@ target/
 *.class
   
 # Package Files #
-*.jar
+# *.jar
 *.war
 *.ear
 *.db
@@ -78,4 +78,6 @@ logs
 *.log
 src/main/resources/*.properties.example
 src/querydsl/**/*
+src/generated/**/*
 *un~
+/.gradle/

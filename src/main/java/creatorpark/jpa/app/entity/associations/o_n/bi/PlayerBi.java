@@ -21,7 +21,6 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of= {"id"})
 @Entity
-
 public class PlayerBi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
